@@ -60,7 +60,8 @@ alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
 
-LS_OPTIONS="--color=auto"
+export CLICOLOR=1
+if ls --color &>/dev/null; then LS_OPTIONS="--color=auto"; fi
 alias ls="/bin/ls ${LS_OPTIONS}"
 alias l="ls -l"
 alias la="ls -a"
@@ -93,7 +94,7 @@ alias r-x='chmod 755'
 
 function rgrep {
     find . -name .svn -prune -o -type f -print0 | \
-        xargs -0 -e grep --color=auto --binary-files=without-match -nH "$@"
+        xargs -0 grep --color=auto --binary-files=without-match -nH "$@"
 }
 
 function tgrep {
@@ -186,7 +187,7 @@ export HELPPAGEROPTS='-E~'
 export SHELL='/bin/zsh'
 export PAGER='less'
 
-eval $(dircolors -b /etc/DIR_COLORS)
+which dircolors > /dev/null && eval $(dircolors -b /etc/DIR_COLORS)
 
 export LESS_TERMCAP_mb=$'\E[01;31m'
 export LESS_TERMCAP_md=$'\E[01;31m'
@@ -363,7 +364,7 @@ zstyle ':completion:*:approximate:' max-errors 'reply=( $((($#PREFIX+$#SUFFIX)/3
 
 # complete manual by their section
 zstyle ':completion:*:manuals' separate-sections true
-zstyle ':completion:*:manuals.*' insert-sections true
+#zstyle ':completion:*:manuals.*' insert-sections true
 zstyle ':completion:*:man:*' menu yes select
 
 for compcom in cp df feh head hnb mv pal stow tail uname; do
