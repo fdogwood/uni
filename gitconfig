@@ -1,0 +1,29 @@
+[user]
+	email = georg@python.org
+	name = Georg Brandl
+[color]
+	diff = auto
+	status = auto
+	branch = auto
+	remote = auto
+	ui = true
+[alias]
+	co = checkout
+	ci = commit
+	st = status
+	br = branch
+	ds = diff --staged
+[gui]
+	recentrepo = /home/gbr/devel/cascade-server
+[push]
+	default = simple
+[pull]
+	rebase = true
+[branch]
+	autosetuprebase = remote
+[log]
+	decorate = short
+[rebase]
+	autosquash = true
+[merge]
+	defaultToUpstream = true
