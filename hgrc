@@ -47,8 +47,10 @@ cacerts = /etc/ssl/certs/ca-certificates.crt
 ann = annotate -ucn
 cdiff = diff --color=always
 slog = log -l5
+show = log -pr
 res = resolve -l
 , = glog -l10
+close-this = !$HG commit --close-branch -m "Closing branch `hg branch`."
 
 [pager]
 pager = LESS='FSRX' less

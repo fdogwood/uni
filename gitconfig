@@ -13,8 +13,12 @@
 	st = status
 	br = branch
 	ds = diff --staged
-[gui]
-	recentrepo = /home/gbr/devel/cascade-server
+	rb = rebase -i origin/master
+	ca = commit --amend
+	pg = push gerrit
+	ann = blame
+	rev = checkout --
+	lg = log --graph
 [push]
 	default = simple
 [pull]
@@ -27,3 +31,7 @@
 	autosquash = true
 [merge]
 	defaultToUpstream = true
+[core]
+	pager = less -S
+[init]
+	templatedir = /home/gbr/.git_template

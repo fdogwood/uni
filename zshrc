@@ -9,6 +9,8 @@ source /etc/profile
 #unalias run-help
 autoload run-help
 
+fpath=(~/.zsh/functions $fpath)
+
 autoload -U compinit
 compinit
 
@@ -415,36 +417,6 @@ changed() {
 new() {
     emulate -L zsh
     print -l *(m-${1:1})
-}
-
-purge() {
-    FILES=(*~(N) .*~(N) \#*\#(N) *.o(N) a.out(N) *.core(N) *.cmo(N) *.cmi(N) .*.swp(N))
-    NBFILES=${#FILES}
-    if [[ $NBFILES > 0 ]] ; then
-        print $FILES
-        local ans
-        echo -n "Remove these files? [y/n] "
-        read -q ans
-        if [[ $ans == "y" ]] ; then
-            rm ${FILES}
-            echo ">> $PWD purged, $NBFILES files removed"
-        else
-            echo "Ok. .. then not.."
-        fi
-    fi
-}
-
-uopen() {
-    emulate -L zsh
-    if ! [[ -n "$1" ]] ; then
-        print "Usage: uopen \$URL/\$file">&2
-        return 1
-    else
-        FILE=$1
-        MIME=$(curl --head $FILE | grep Content-Type | cut -d ' ' -f 2 | cut -d\; -f 1)
-        MIME=${MIME%$'\r'}
-        curl $FILE | see ${MIME}:-
-    fi
 }
 
 urlencode() {
